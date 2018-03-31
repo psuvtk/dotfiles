@@ -1,5 +1,8 @@
 " 关闭兼容模式
 set nocompatible
+set backspace=indent,eol,start
+
+
 " 让配置变更立即生效-容易保存卡死
 " autocmd BufWritePost $MYVIMRC source $MYVIMRC
 " 定义快捷键的前缀，即<Leader>
@@ -14,7 +17,7 @@ syntax enable
 
 " 配色
 set background=dark
-colorscheme desert
+colorscheme solarized
 set encoding=utf-8
 " solarized colorscheme
 if has('gui_running')
@@ -69,14 +72,15 @@ set ignorecase
 " vim 自身命令行模式智能补全
 set wildmenu
 
+
 " 基于缩进或语法进行代码折叠
 "set foldmethod=indent
 set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 
-"-------------------------------------------------
-" 插件管理
+
+"================插件管理================
 call plug#begin('~/.vim/plugged')
 " 智能补全
 Plug 'Valloric/YouCompleteMe'
@@ -86,15 +90,15 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/a.vim'
 Plug 'vim-scripts/c.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-" Plug 'justmao945/vim-clang'
+
 " 头文件/源文件快速跳转
 Plug 'derekwyatt/vim-fswitch'
 
-" go/rust
 " Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 
 Plug 'mattn/emmet-vim'
+Plug 'taketwo/vim-ros'
 
 " Plug 'python-mode/python-mode'
 " Plug 'ivanov/vim-ipython'
@@ -103,7 +107,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'timothycrosley/isort'
 
 " 语法检查
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 "代码排版，格式化
 " Plug 'godlygeek/tabular'
@@ -128,10 +132,15 @@ Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
 " 显示行尾多余的空格
 Plug 'vim-scripts/ShowTrailingWhitespace'
+"
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
 
+"================插件配置================
+"
+"----------------YouCompleterMe
 " YCM 补全菜单配色
 " 菜单
 " highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
@@ -156,12 +165,15 @@ let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_cache_omnifunc=0
 " 语法关键字补全
 let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_python_binary_path = 'python3'
+let g:ycm_key_invoke_completion = ''
 
 
+"------------------NERDTree
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
-nmap <Leader>fl :NERDTreeToggle<CR>
+nmap <Leader>nt :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
-let NERDTreeWinSize=48
+let NERDTreeWinSize=36
 " 设置NERDTree子窗口位置
 let NERDTreeWinPos="left"
 " 显示隐藏文件
@@ -172,22 +184,54 @@ let NERDTreeMinimalUI=1
 let NERDTreeAutoDeleteBuffer=1
 
 
+"----------------w0rp/ale
+"文件内容发生变化时不进行检查
+let g:ale_lint_on_text_changed = 'never'
+"打开文件时不进行检查
+let g:ale_lint_on_enter = 0
+"对C/C++使用Clang进行语法检查
+let g:ale_linters = {'c': ['clang']}
+let g:ale_c_clang_options = '-Wall -I /usr/include'
+let g:ale_linters = {'c++': ['clang']}
+let g:ale_cpp_clang_options = '-std=c++11 -Wall -I /usr/include -I /usr/include/c++/6 -I /usr/include/boost -I /opt/ros/lunar/include'
+
+
+"----------------tagbar
+nmap <leader>tb :TagbarToggle<CR>
+" 启动时自动focus
+let g:tagbar_autofocus = 1
+
+"----------------derekwyatt/vim-fswitch
+" *.cpp 和 *.h 间切换
+nmap <silent> <Leader>sw :FSHere<cr>
+
+
+"----------------vim-scripts/ShowTrailingWhitespace
+"strip all trailing whitespace in the current file
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
+
+
+"----------------sheerun/vim-polyglot
+" 特定语言禁止高亮
+let g:polyglot_disabled = ['python']
+
+"===============================================================================
+
+
 " python 代码格式化
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 " python 整理import项(timothycrosley/isort)
 autocmd FileType python nnoremap <leader>i :!isort %<CR><CR>
 
 
-" vim-fswitch 配置
-" *.cpp 和 *.h 间切换
-nmap <silent> <Leader>sw :FSHere<cr>
-
-"strip all trailing whitespace in the current file
-nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
-
-
 " sudo 写入
 command W w !sudo tee % > /dev/null
 
-" 特定语言禁止高亮
-" let g:polyglot_disabled = ['css']
+
+nnoremap <silent> <leader>ls :ls<CR>
+nnoremap <silent> <leader>yy "+yy
+
+set listchars=tab:→.,trail:.
+highlight WhitespaceEOL ctermbg=red guibg=red
+match WhitespaceEOL /\s\+$/
+set list
