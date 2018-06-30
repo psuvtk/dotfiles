@@ -16,6 +16,7 @@ syntax on
 syntax enable
 
 " 配色
+set t_Co=256
 set background=dark
 colorscheme solarized
 set encoding=utf-8
@@ -26,13 +27,6 @@ else
 	set background=dark
 endif
 let g:solarized_termcolors=256
-
-
-" 禁用箭头方向键 ↑ ↓ ← →
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
 
 
 " 总是显示状态栏
@@ -58,6 +52,16 @@ set autoindent
 "智能缩进
 set smartindent
 
+let python_highlight_all=1
+au Filetype python set tabstop=4
+au Filetype python set softtabstop=4
+au Filetype python set shiftwidth=4
+au Filetype python set textwidth=79
+au Filetype python set expandtab
+au Filetype python set autoindent
+au Filetype python set fileformat=unix
+autocmd Filetype python set foldmethod=indent
+autocmd Filetype python set foldlevel=99
 
 " 高亮显示当前行/列
 " set cursorcolumn
@@ -101,13 +105,12 @@ Plug 'mattn/emmet-vim'
 Plug 'taketwo/vim-ros'
 
 " Plug 'python-mode/python-mode'
-" Plug 'ivanov/vim-ipython'
 Plug 'davidhalter/jedi-vim'
 " import 整理
 Plug 'timothycrosley/isort'
 
 " 语法检查
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 
 "代码排版，格式化
 " Plug 'godlygeek/tabular'
@@ -117,6 +120,7 @@ Plug 'majutsushi/tagbar'
 
 " 注释
 Plug 'scrooloose/nerdcommenter'
+" 文件目录
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'vim-airline/vim-airline'
@@ -143,9 +147,9 @@ call plug#end()
 "----------------YouCompleterMe
 " YCM 补全菜单配色
 " 菜单
-" highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+highlight Pmenu ctermfg=7 ctermbg=13
 " 选中项
-" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+highlight PmenuSel ctermfg=1 ctermbg=13
 " 补全功能在注释中同样有效
 let g:ycm_complete_in_comments=1
 " 不显示开启vim时检查ycm_extra_conf文件的信息
@@ -195,6 +199,11 @@ let g:ale_c_clang_options = '-Wall -I /usr/include'
 let g:ale_linters = {'c++': ['clang']}
 let g:ale_cpp_clang_options = '-std=c++11 -Wall -I /usr/include -I /usr/include/c++/6 -I /usr/include/boost -I /opt/ros/lunar/include'
 
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+
 
 "----------------tagbar
 nmap <leader>tb :TagbarToggle<CR>
@@ -217,6 +226,30 @@ let g:polyglot_disabled = ['python']
 
 "===============================================================================
 
+" kien/rainbow_parentheses.vim
+let g:rbpt_colorpairs = [
+                        \ ['brown',       'RoyalBlue3'],
+                        \ ['Darkblue',    'SeaGreen3'],
+                        \ ['darkgray',    'DarkOrchid3'],
+                        \ ['darkgreen',   'firebrick3'],
+                        \ ['darkcyan',    'RoyalBlue3'],
+                        \ ['darkred',     'SeaGreen3'],
+                        \ ['darkmagenta', 'DarkOrchid3'],
+                        \ ['brown',       'firebrick3'],
+                        \ ['gray',        'RoyalBlue3'],
+                        \ ['darkmagenta', 'DarkOrchid3'],
+                        \ ['Darkblue',    'firebrick3'],
+                        \ ['darkgreen',   'RoyalBlue3'],
+                        \ ['darkcyan',    'SeaGreen3'],
+                        \ ['darkred',     'DarkOrchid3'],
+                        \ ['red',         'firebrick3'],
+                        \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " python 代码格式化
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
@@ -227,11 +260,24 @@ autocmd FileType python nnoremap <leader>i :!isort %<CR><CR>
 " sudo 写入
 command W w !sudo tee % > /dev/null
 
+"set listchars=tab:→.,trail:.
+"highlight WhitespaceEOL ctermbg=red guibg=red
+"match WhitespaceEOL /\s\+$/
+"set list
 
-nnoremap <silent> <leader>ls :ls<CR>
-nnoremap <silent> <leader>yy "+yy
+" 禁用箭头方向键 ↑ ↓ ← →
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+" window
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-L> <C-W><C-L>
 
-set listchars=tab:→.,trail:.
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
-set list
+nnoremap <Leader>sp :sp<CR>
+nnoremap <Leader>vs :vs<CR>
+
+nnoremap <Leader><Leader>t :terminal<CR>
+nnoremap <Leader><Leader>b :make<CR>

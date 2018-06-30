@@ -1,0 +1,5 @@
+
+sudo apt install zsh git
+sudo apt install guake terminator
+sudo add-apt-repository ppa:papirus/papirus
+sudo add-apt-repository ppa:daniruiz/flat-remix
