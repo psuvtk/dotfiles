@@ -350,10 +350,9 @@ you should place your code here."
   (setq org-tag-alist '(("@lab" . ?l) ("@personal" . ?p) ("laptop" . ?l)
                         ("@master" . ?m)))
 
-  (setq org-agenda-files (list "~/Repos/org-mode/GTD/Archive.org"
+  (setq org-agenda-files (list "~/Repos/org-mode/GTD/CleanUp.org"
                                "~/Repos/org-mode/GTD/Master.org"
-                               "~/Repos/org-mode/GTD/Trash.org"
-                               "~/Repos/org-mode/GTD/Tasks.org"))
+                               "~/Repos/org-mode/GTD/Actions.org"))
 
   (setq org-refile-targets
         '((nil :maxlevel . 2)
@@ -368,9 +367,11 @@ you should place your code here."
 
   ;; 自动缩进
   (setq org-startup-indented t)
-
   ;; (spacemacs/set-leader-keys (kbd "wV") 'split-window-right)
   ;; (spacemacs/set-leader-keys (kbd "wv") 'split-window-right-and-focus)
+
+  ;; 下划线不转义，当使用{}时才会转义
+  (setq org-export-with-sub-superscripts '{})
 
 
   ;; 使用make
@@ -378,9 +379,10 @@ you should place your code here."
   (add-hook 'org-mode-hook
             (lambda()
               (setq truncate-lines nil)))
+  ;; 设置中文字体，使得org-mode表格中英文对齐
   (dolist (charset '(kana han cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family "微软雅黑" :size 22)))
+                      (font-spec :family "Noto Sans CJK SC" :size 22)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
