@@ -18,7 +18,7 @@ syntax enable
 " 配色
 set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme desert
 set encoding=utf-8
 " solarized colorscheme
 if has('gui_running')
@@ -100,6 +100,7 @@ Plug 'derekwyatt/vim-fswitch'
 
 " Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
+Plug 'elixir-editors/vim-elixir'
 
 Plug 'mattn/emmet-vim'
 Plug 'taketwo/vim-ros'
