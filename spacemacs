@@ -19,45 +19,35 @@ values."
    ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
    ;; installation feature and you have to explicitly list a layer in the
    ;; variable `dotspacemacs-configuration-layers' to install it.
-   ;; (default 'unused) dotspacemacs-enable-lazy-installation 'unused
+   ;; (default 'unused)
+   dotspacemacs-enable-lazy-installation 'unused
    ;; If non-nil then Spacemacs will ask for confirmation before installing
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '(
-
-                                           )
+   dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     html
-     ;; programming layers
-     python
-     elixir
-     (c-c++ :variables
-            c-c++-enable-clang-support t
-            c-c++-default-mode-for-headers 'c++-mode)
-     org
-     markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
+     ivy
      auto-completion
-     ;; better-defaults
+     better-defaults
      emacs-lisp
      ;; git
-     (chinese :variables
-              chinese-enable-fcitx t)
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
+     ;; markdown
+     org
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
      ;; spell-checking
-     syntax-checking
+     ;; syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -68,9 +58,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(
-            evil-unimpaired
-           )
+   dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -122,18 +110,15 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner nil
+   dotspacemacs-startup-banner 'official
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
    ;; `recents' `bookmarks' `projects' `agenda' `todos'."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 6)
-                                (projects . 5)
-                                (todos . 5)
-                                (agenda . 5)
-                                )
+   dotspacemacs-startup-lists '((recents . 5)
+                                (projects . 7))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -141,19 +126,17 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                        leuven
-                        solarized-dark
-                         )
+   dotspacemacs-themes '(spacemacs-dark
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Monaco"
-                               :size 18
+   dotspacemacs-default-font '("Inconsolata"
+                               :size 20
                                :weight normal
                                :width normal
-                               :powerline-scale 1.15)
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key ";"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -225,7 +208,7 @@ values."
    dotspacemacs-enable-paste-transient-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.5
+   dotspacemacs-which-key-delay 0.4
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -244,11 +227,11 @@ values."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 75
+   dotspacemacs-active-transparency 90
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -276,7 +259,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -307,7 +290,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup `trailing
+   dotspacemacs-whitespace-cleanup nil
    ))
 
 (defun dotspacemacs/user-init ()
@@ -317,14 +300,16 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  ;; melpa 国内镜像
   (setq configuration-layer--elpa-archives
-      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-        ("org-cn"   . "http://elpa.emacs-china.org/org/")
-        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+        '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+          ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+          ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
-  (setq default-directory "~/Workspace/")
-  (global-set-key (kbd "C-SPC") nil)
-
+  ;; 设置默认目录
+  (setq default-directory "~\\")
+  ;; 禁止压缩字体缓存 -- 重要，可以大大提高速度
+  (setq inhibit-compacting-font-caches t)
   )
 
 (defun dotspacemacs/user-config ()
@@ -334,26 +319,44 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; 结构化样式
-  ;; (setq-default org-bullets-bullet-list '("𝓐" "𝓑" "𝓒" "𝓓" "𝓔" "𝓕" "𝓖"  "𝓗" "𝓘"  "𝓙"  "𝓚" "𝓛" "𝓜" "𝓝"))
-  (setq-default org-bullets-bullet-list '( "⚝" "❀" "✡" "❄" "☣"  "⚛"))
 
-  ;; todo ketword 以及样式
+  ;; 透明
+  (set-frame-parameter nil 'alpha '(95 . 100))
+  ;; 自动缩进
+  (setq org-startup-indented t)
+
+  ;; 设置bullet list
+  ;; (setq-default org-bullets-bullet-list '("𝓐" "𝓑" "𝓒" "𝓓" "𝓔" "𝓕" "𝓖"  "𝓗" "𝓘"  "𝓙"  "𝓚" "𝓛" "𝓜" "𝓝"))
+  (setq org-bullets-bullet-list '("❀" "☣" "❀" "❄" "✿" "✡"))
+
+  ;; org/GTD 配置
+  (setq org-agenda-files (list "~/org-mode/GTD/CleanUp.org") (list "~/org-mode/GTD/Actions.org"))
+
+  ;; 工作流&样式
   (setq org-todo-keywords
-        '((sequence "PENGDING(p@/!)" "TODO(t@/!)" "AGENT(a@/!)" "FUTURE(f/!)" "|" "DONE(d@/!)" "CANCELED(c@/!)")))
+        '((sequence "PENDING(p@/!)" "TODO(t@/!)" "IN-PROGRESS(I@)" "AGENT(a@/!)" "FUTURE(f/!)" "|" "✔ DONE(d@/!)" "✘ CANCELED(c@/!)")))
+  ;; 多工作流
+  ;; (setq org-todo-keywords  '((sequence "TODO" "IN-PROCESS" "|" "DONE" "123")
+  ;;                            (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")
+  ;;                            (sequence "|" "CANCELED")))
+  ;; todo keywords 增加背景色
+  ;; (setq org-todo-keyword-faces '(("TODO" . (:foreground "white" :background "#95A5A6"   :weight bold))
+  ;;                                ("PENDING" . (:foreground "white" :background "#2E8B57"  :weight bold))
+  ;;                                ("DONE" . (:foreground "white" :background "#3498DB" :weight bold))
+  ;;                                ("CANCELED" . (:foreground "white" :background "#4d4d4d" :weight bold))))
   (setq org-todo-keyword-faces
         '(("TODO" . org-warning)
+          ("DONE" . "green")
+          ("IN-PROGRESS" . "yellow")
           ("AGENT" . "red")
           ("FUTURE" . "purple")
           ("CANCELED" . "gray")))
-  ;; tags
-  (setq org-tag-alist '(("@lab" . ?l) ("@personal" . ?p) ("laptop" . ?l)
+
+  ;; 标签
+  (setq org-tag-alist '(("@lab" . ?b) ("@project" . ?t) ("@misc" . ?m)
+                        ("@personal" . ?p) ("@laptop" . ?l) ("@programming" . ?p)
                         ("@master" . ?m)))
-
-  (setq org-agenda-files (list "~/Repos/org-mode/GTD/CleanUp.org"
-                               "~/Repos/org-mode/GTD/Master.org"
-                               "~/Repos/org-mode/GTD/Actions.org"))
-
+  ;; refile 配置
   (setq org-refile-targets
         '((nil :maxlevel . 2)
           (org-agenda-files :maxlevel . 2)))
@@ -361,28 +364,17 @@ you should place your code here."
   ;; makes org-refile outline working with helm/ivy
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
+
   ;; show agenda list when startup
-  (org-agenda-list)
-  (setq org-agenda-skip-scheduled-if-done t)
+  ;; (org-agenda-list)
+  ;; (setq org-agenda-skip-scheduled-if-done t)
 
-  ;; 自动缩进
-  (setq org-startup-indented t)
-  ;; (spacemacs/set-leader-keys (kbd "wV") 'split-window-right)
-  ;; (spacemacs/set-leader-keys (kbd "wv") 'split-window-right-and-focus)
-
-  ;; 下划线不转义，当使用{}时才会转义
-  (setq org-export-with-sub-superscripts '{})
-
-
-  ;; 使用make
-  (setq-default helm-make-build-dir "build/")
-  (add-hook 'org-mode-hook
-            (lambda()
-              (setq truncate-lines nil)))
   ;; 设置中文字体，使得org-mode表格中英文对齐
   (dolist (charset '(kana han cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family "Noto Sans CJK SC" :size 22)))
+                      (font-spec :family "微软雅黑" :size 20)))
+  ;; faces 字体
+  (set-face-attribute 'default nil :height 115 :family "Consolas")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -392,12 +384,9 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   (quote
-    ("~/Repos/org-mode/GTD/Master.org" "~/Repos/org-mode/GTD/Trash.org" "~/Repos/org-mode/GTD/Tasks.org")))
  '(package-selected-packages
    (quote
-    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data flycheck-ycmd company-ycmd ycmd request-deferred let-alist deferred yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic disaster company-c-headers cmake-mode clang-format flycheck-pos-tip pos-tip cpputils-cmake helm-company helm-c-yasnippet fuzzy company-statistics auto-yasnippet yasnippet ac-ispell auto-complete visual-fill-column org-cliplink avy-zap pyim pyim-basedict pangu-spacing find-by-pinyin-dired ace-pinyin pinyinlib fcitx xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help mmm-mode markdown-toc markdown-mode gh-md ob-elixir flycheck-mix flycheck-credo flycheck alchemist company elixir-mode ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (emoji-cheat-sheet-plus helm helm-core company-emoji org-category-capture alert log4e gntp htmlize company yasnippet auto-complete wgrep smex ivy-hydra counsel-projectile counsel swiper yapfify ws-butler winum which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tide tagedit spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-elixir noflet neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ensime emmet-mode elisp-slime-nav dumb-jump diminish define-word cython-mode company-web company-statistics company-emacs-eclim company-auctex company-anaconda column-enforce-mode cnfonts clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
