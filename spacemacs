@@ -36,7 +36,11 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ivy
+     ;; ivy
+     elixir
+     ycmd
+     python
+     helm
      auto-completion
      better-defaults
      emacs-lisp
@@ -127,7 +131,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+                         leuven)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -330,11 +334,11 @@ you should place your code here."
   (setq org-bullets-bullet-list '("❀" "☣" "❀" "❄" "✿" "✡"))
 
   ;; org/GTD 配置
-  (setq org-agenda-files (list "~/org-mode/GTD/CleanUp.org") (list "~/org-mode/GTD/Actions.org"))
+  (setq org-agenda-files (list "~/org-mode/GTD/CleanUp.org" "~/org-mode/GTD/Actions.org"))
 
   ;; 工作流&样式
   (setq org-todo-keywords
-        '((sequence "PENDING(p@/!)" "TODO(t@/!)" "IN-PROGRESS(I@)" "AGENT(a@/!)" "FUTURE(f/!)" "|" "✔ DONE(d@/!)" "✘ CANCELED(c@/!)")))
+        '((sequence "PENDING(p@/!)" "TODO(t@/!)" "IN-PROGRESS(I@/!)" "|" "✔ DONE(d@/!)" "✘ CANCELED(c@/!)")))
   ;; 多工作流
   ;; (setq org-todo-keywords  '((sequence "TODO" "IN-PROCESS" "|" "DONE" "123")
   ;;                            (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")
@@ -347,10 +351,9 @@ you should place your code here."
   (setq org-todo-keyword-faces
         '(("TODO" . org-warning)
           ("DONE" . "green")
+          ("PENDING" . "blue")
           ("IN-PROGRESS" . "yellow")
-          ("AGENT" . "red")
-          ("FUTURE" . "purple")
-          ("CANCELED" . "gray")))
+          ("CANCELED" . "#808080")))
 
   ;; 标签
   (setq org-tag-alist '(("@lab" . ?b) ("@project" . ?t) ("@misc" . ?m)
@@ -386,7 +389,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (emoji-cheat-sheet-plus helm helm-core company-emoji org-category-capture alert log4e gntp htmlize company yasnippet auto-complete wgrep smex ivy-hydra counsel-projectile counsel swiper yapfify ws-butler winum which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tide tagedit spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-elixir noflet neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ensime emmet-mode elisp-slime-nav dumb-jump diminish define-word cython-mode company-web company-statistics company-emacs-eclim company-auctex company-anaconda column-enforce-mode cnfonts clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (company-ycmd ycmd request-deferred deferred magit-popup gitignore-mode magit transient git-commit with-editor dash-functional flycheck anaconda-mode pythonic elixir-mode emoji-cheat-sheet-plus helm helm-core company-emoji org-category-capture alert log4e gntp htmlize company yasnippet auto-complete wgrep smex ivy-hydra counsel-projectile counsel swiper yapfify ws-butler winum which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tide tagedit spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-elixir noflet neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ensime emmet-mode elisp-slime-nav dumb-jump diminish define-word cython-mode company-web company-statistics company-emacs-eclim company-auctex company-anaconda column-enforce-mode cnfonts clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
