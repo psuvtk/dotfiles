@@ -356,7 +356,7 @@ you should place your code here."
 
   ;; 标签
   (setq org-tag-alist '(("@lab" . ?b) ("@project" . ?t) ("@misc" . ?m) ("@financial" . ?f)
-                        ("@personal" . ?p) ("@laptop" . ?l) ("@programming" . ?p)
+                        ("@personal" . ?p) ("@laptop" . ?l) ("@programming" . ?p) ("@paper" . ?p)
                         ("@master" . ?m)))
   ;; refile 配置
   (setq org-refile-targets
