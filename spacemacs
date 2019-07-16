@@ -45,7 +45,7 @@ values."
      better-defaults
      emacs-lisp
      ;; git
-     ;; markdown
+     markdown
      org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -337,7 +337,7 @@ you should place your code here."
 
   ;; 工作流&样式
   (setq org-todo-keywords
-        '((sequence "PENDING(p@/!)" "TODO(t@/!)" "IN-PROGRESS(I@/!)" "|" "✔ DONE(d@/!)" "✘ CANCELED(c@/!)")))
+        '((sequence "TODO(t@/!)" "PENDING(p@/!)" "IN-PROGRESS(I@/!)" "|" "✔ DONE(d@/!)" "✘ CANCELED(c@/!)")))
   ;; 多工作流
   ;; (setq org-todo-keywords  '((sequence "TODO" "IN-PROCESS" "|" "DONE" "123")
   ;;                            (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")
@@ -356,7 +356,8 @@ you should place your code here."
 
   ;; 标签
   (setq org-tag-alist '(("@lab" . ?b) ("@project" . ?t) ("@misc" . ?m) ("@financial" . ?f)
-                        ("@personal" . ?p) ("@laptop" . ?l) ("@programming" . ?p) ("@paper" . ?p)
+                        ("@personal" . ?p) ("@laptop" . ?l) ("@programming" . ?p)
+                        ("@paper" . ?p) ("@reading" . ?r) ("@writing" . ?w) ("@submit" . ?s)
                         ("@master" . ?m)))
   ;; refile 配置
   (setq org-refile-targets
@@ -388,7 +389,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flycheck-ycmd pos-tip company-ycmd ycmd request-deferred deferred magit-popup gitignore-mode magit transient git-commit with-editor dash-functional flycheck anaconda-mode pythonic elixir-mode emoji-cheat-sheet-plus helm helm-core company-emoji org-category-capture alert log4e gntp htmlize company yasnippet auto-complete wgrep smex ivy-hydra counsel-projectile counsel swiper yapfify ws-butler winum which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tide tagedit spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-elixir noflet neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ensime emmet-mode elisp-slime-nav dumb-jump diminish define-word cython-mode company-web company-statistics company-emacs-eclim company-auctex company-anaconda column-enforce-mode cnfonts clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (markdown-mode flycheck-ycmd pos-tip company-ycmd ycmd request-deferred deferred magit-popup gitignore-mode magit transient git-commit with-editor dash-functional flycheck anaconda-mode pythonic elixir-mode emoji-cheat-sheet-plus helm helm-core company-emoji org-category-capture alert log4e gntp htmlize company yasnippet auto-complete wgrep smex ivy-hydra counsel-projectile counsel swiper yapfify ws-butler winum which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tide tagedit spaceline smeargle slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-elixir noflet neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ensime emmet-mode elisp-slime-nav dumb-jump diminish define-word cython-mode company-web company-statistics company-emacs-eclim company-auctex company-anaconda column-enforce-mode cnfonts clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
