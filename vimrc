@@ -84,13 +84,12 @@ set foldmethod=syntax
 set nofoldenable
 
 
-"================插件管理================
+"================插件管理vim-plug================
 call plug#begin('~/.vim/plugged')
 " 智能补全
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 " 多语言高亮配色
 Plug 'sheerun/vim-polyglot'
-
 Plug 'vim-scripts/a.vim'
 Plug 'vim-scripts/c.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -99,14 +98,12 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'derekwyatt/vim-fswitch'
 
 " Plug 'rust-lang/rust.vim'
-Plug 'fatih/vim-go'
-Plug 'elixir-editors/vim-elixir'
-
-Plug 'mattn/emmet-vim'
-Plug 'taketwo/vim-ros'
-
+" Plug 'fatih/vim-go'
+" Plug 'elixir-editors/vim-elixir'
+" Plug 'mattn/emmet-vim'
 " Plug 'python-mode/python-mode'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
+
 " import 整理
 Plug 'timothycrosley/isort'
 
